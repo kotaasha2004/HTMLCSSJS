@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+    background-color: white;
+    text-align: center;
+    padding-top: 200px;
+}
+.calculator{
+    box-shadow: 0 0 10px grey;
+    border-radius: 10px;
+    background-image:linear-gradient(to right, rgb(157, 232, 192),bisque);
+    margin-left: 150px;
+    margin-right: 150px;
+}
+#btn{
+   border:none;
+    width:30%;
+    background-color: rgb(66, 165, 80);
+    height: 25px;
+}
+#btn:hover{
+    background-color: white;
+}
+#p{
+    font-size: 18px;
+}
+#birthdate{
+    width:38%;
+    height: 25px;
+}
+    </style>
+    <title>Age Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+       <br> <h1>Age Calculator</h1>
+        <br>
+        <label for="birthdate" id="p">Enter birthdate:</label><br><br>
+        <input type="date" id="birthdate">
+<br><br><br>
+      <button id="btn">
+        Calculate
+      </button>
+        <p>Your age is:<span id="result"></span></p><br>
+    </div>
+
+    <script >
+        const btn1=document.getElementById("btn");
+function calculateAge() {
+    
+    var birthdateInput = document.getElementById('birthdate');
+    
+   
+    if (!birthdateInput.value) {
+        alert('Please select a valid birthdate.');
+        return;
+    }
+
+    
+    var birthdate = new Date(birthdateInput.value);
+    var currentDate = new Date();
+
+  
+    var yearsDiff = currentDate.getFullYear() - birthdate.getFullYear();
+    var monthsDiff = currentDate.getMonth() - birthdate.getMonth();
+
+   
+    if (monthsDiff < 0) {
+        yearsDiff--;
+        monthsDiff += 12;
+    }
+
+   
+    var resultElement = document.getElementById('result');
+
+    if (yearsDiff === 1) {
+        resultElement.innerText = '1 year';
+    } else if (yearsDiff > 1) {
+        resultElement.innerText = yearsDiff + ' years';
+    }
+
+    if (monthsDiff === 1) {
+        resultElement.innerText += ' and 1 month';
+    } else if (monthsDiff > 1) {
+        resultElement.innerText += ' and ' + monthsDiff+"months";
+    }
+}
+    
+btn1.addEventListener("click",calculateAge)
+    </script>
+</body>
+</html>
